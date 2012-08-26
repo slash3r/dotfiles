@@ -1,0 +1,36 @@
+# remap prefix to C-a
+set-option -g prefix C-a
+set-option -g prefix2 C-f
+
+unbind-key C-b
+bind-key C-a send-prefix
+
+# map source ~/.tmux.conf to <prefix>r
+unbind-key r
+bind-key r source-file ~/.tmux.conf
+
+# set terminal colors
+set-option -g default-terminal "screen-256color"
+
+# make the index start at 1
+set-option -g base-index 1
+set-window-option pane-base-index 1
+
+# map list-windows to <prefix>l
+unbind-key l
+bind-key l list-windows
+
+# quick pane cycling
+unbind-key ^A
+bind-key ^A last-pane 
+
+# split bindings
+unbind-key %
+bind-key | split-window -h
+bind-key - split-window -v
+
+# mouse options
+set-option -g mouse-select-window on
+set-option -g mouse-select-pane on
+set-option -g mouse-resize-pane on
+

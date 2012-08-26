@@ -1,0 +1,19 @@
+Instalation:
+
+    git clone https://github.com/slash3r/dotfiles.git
+
+Create symlinks:
+
+    ln -s ~/dotfiles/vim ~/.vim
+    ln -s ~/dotfiles/vim/vimrc ~/.vimrc
+    ln -s ~/dotfiles/tmux/tmuxrc ~/.tmux.conf
+
+Switch to the '~/dotfile' directory, and fetch submodules:
+
+    cd ~/dotfiles
+    git submodules init
+    git submodules update
+
+Upgade all submodules:
+
+    git submodule foreach git pull origin master
