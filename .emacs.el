@@ -24,6 +24,7 @@
 (require 'icicles)
 
 ; Delete selection on key press
+; to you see me?
 (delete-selection-mode 1)
 
 ; Set the default cursor the a vertical bar
