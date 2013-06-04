@@ -23,6 +23,9 @@
 ; Start Icicles
 (require 'icicles)
 
+; Add EGG (Emacs Got Git)
+(require 'egg)
+
 ; Add eshell shortcut
 (global-set-key [f1] 'eshell)
 
