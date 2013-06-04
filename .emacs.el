@@ -23,6 +23,9 @@
 ; Start Icicles
 (require 'icicles)
 
+; Add eshell shortcut
+(global-set-key [f1] 'eshell)
+
 ; Delete selection on key press
 ; to you see me?
 (delete-selection-mode 1)
