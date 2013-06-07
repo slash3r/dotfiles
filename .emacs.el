@@ -41,7 +41,7 @@
 (smooth-scroll-mode t)
 
 ; Set the startup frame size
-(set-frame-size (selected-frame) 150 50)
+; (set-frame-size (selected-frame) 150 50)
 
 ;(require 'fill-column-indicator)
 (global-hl-line-mode 1)
@@ -86,9 +86,7 @@
 (ido-mode t)
 
 ; Override the kill buffer shortcut
-(global-set-key [(control x) (k)] 'kill-this-buffer)
-
-(global-set-key [(control x) (b)] 'ibuffer)
+(global-set-key (kbd "C-x b") 'ibuffer)
 (setq ibuffer-default-sorting-mode 'major-mode)
 
 ; Hide custom files
@@ -105,6 +103,7 @@
 ;(global-set-key (kbd "C-S-s") 'icicle-occur)
 (global-set-key (kbd "C-S-s") 'occur)
 ;(global-set-key (kbd "C-s") 'save-buffer)
+(global-set-key (kbd "<f5>") 'save-buffer)
 ;(global-set-key (kbd "C-f") 'isearch-forward)
 ;(global-set-key (kbd "C-c") 'kill-ring-save)
 ;(global-set-key (kbd "C-v") 'yank)
