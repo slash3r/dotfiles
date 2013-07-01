@@ -20,8 +20,10 @@
 	     '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 
+;(set-face-attribute 'default nil :font "Droid Sans Mono")
+
 ; Start Icicles
-(require 'icicles)
+;(require 'icicles)
 
 ; Add EGG (Emacs Got Git)
 (require 'egg)
@@ -44,7 +46,7 @@
 ; (set-frame-size (selected-frame) 150 50)
 
 ;(require 'fill-column-indicator)
-(global-hl-line-mode 1)
+(global-hl-line-mode 0)
 
 ; Disable some stuff
 (scroll-bar-mode -1)
@@ -80,6 +82,7 @@
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
+
 
 ; Auto load ido mode
 (require 'ido)
