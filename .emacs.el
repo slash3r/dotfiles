@@ -20,7 +20,8 @@
 	     '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 
-;(set-face-attribute 'default nil :font "Droid Sans Mono")
+(set-face-attribute 'default nil :font "Terminus-10")
+;(set-default-font "Terminus-10")
 
 ; Start Icicles
 ;(require 'icicles)
@@ -32,15 +33,16 @@
 (global-set-key [f1] 'eshell)
 
 ; Delete selection on key press
-; to you see me?
 (delete-selection-mode 1)
 
 ; Set the default cursor the a vertical bar
 (setq-default cursor-type 'box)
 
 ; Enable smooth scrolling
-(require 'smooth-scroll)
-(smooth-scroll-mode t)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))  ;; one line at a time
+(setq mouse-wheel-progressive-speed nil)             ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't)                   ;; scroll window under mouse
+(setq scroll-step 1)                                 ;; keyboard scroll one line at a time
 
 ; Set the startup frame size
 ; (set-frame-size (selected-frame) 150 50)
@@ -83,7 +85,6 @@
 (setq jedi:setup-keys t)
 (setq jedi:complete-on-dot t)
 
-
 ; Auto load ido mode
 (require 'ido)
 (ido-mode t)
@@ -95,21 +96,14 @@
 ; Hide custom files
 (require 'ibuf-ext)
 (add-to-list 'ibuffer-never-show-predicates "^\\*")
-; (autoload 'ibuffer "ibuffer" "List buffers." t)
 
 (setq-default truncate-lines -1)
 
 ; Some emacs ergonomics
-;(global-set-key (kbd "C-n") 'new-empty-buffer)
 (global-set-key (kbd "C-o") 'find-file)
 (global-set-key (kbd "C-w") 'kill-this-buffer)
-;(global-set-key (kbd "C-S-s") 'icicle-occur)
 (global-set-key (kbd "C-S-s") 'occur)
-;(global-set-key (kbd "C-s") 'save-buffer)
 (global-set-key (kbd "<f5>") 'save-buffer)
-;(global-set-key (kbd "C-f") 'isearch-forward)
-;(global-set-key (kbd "C-c") 'kill-ring-save)
-;(global-set-key (kbd "C-v") 'yank)
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-l") 'goto-line)
 
