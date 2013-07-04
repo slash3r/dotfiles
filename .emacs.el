@@ -21,13 +21,6 @@
 (package-initialize)
 
 (set-face-attribute 'default nil :font "Terminus-10")
-;(set-default-font "Terminus-10")
-
-; Start Icicles
-;(require 'icicles)
-
-; Add EGG (Emacs Got Git)
-(require 'egg)
 
 ; Add eshell shortcut
 (global-set-key [f1] 'eshell)
@@ -43,12 +36,6 @@
 (setq mouse-wheel-progressive-speed nil)             ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't)                   ;; scroll window under mouse
 (setq scroll-step 1)                                 ;; keyboard scroll one line at a time
-
-; Set the startup frame size
-; (set-frame-size (selected-frame) 150 50)
-
-;(require 'fill-column-indicator)
-(global-hl-line-mode 0)
 
 ; Disable some stuff
 (scroll-bar-mode -1)
@@ -107,10 +94,9 @@
 (global-set-key (kbd "C-z") 'undo)
 (global-set-key (kbd "C-l") 'goto-line)
 
-(global-set-key (kbd "M-3") 'delete-other-window)   ; expand current pane
-(global-set-key (kbd "M-4") 'split-window-vertical) ; split pane top/bottom
 (global-set-key (kbd "M-s") 'other-window)          ; cursor to other pane
 (global-set-key (kbd "M-0") 'delete-window)         ; close current pane
+
 (put 'erase-buffer 'disabled nil)
 
 ;; Use human readable Size column instead of original one
@@ -140,12 +126,6 @@
     (eval-buffer)))
 
 (add-hook 'after-save-hook 'byte-compile-current-buffer)
-
-;; To load and external init file:
-;;    (load "~/.emacs.d/file_name")
-;; the file name is given without the extension, so that, if an compiled version
-;; of it exists (.elc) it will load it instead of the text version (.el)
-
 
 ;; Smart HOME function
 (defun smart-beginning-of-line ()
