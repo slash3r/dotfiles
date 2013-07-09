@@ -4,23 +4,34 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (misterioso)))
+ '(ecb-layout-name "left9")
+ '(ecb-source-path (quote (("d:" "d:"))))
+ '(ecb-tag-jump-sets-mark nil)
  '(inhibit-startup-screen t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(bm-fringe-persistent-face ((t (:background "DarkOrange1" :foreground "black")))))
 
 ; Add marmalade repo
 (require 'package)
 (add-to-list 'package-archives
-	     '("marmalade" . "http://marmalade-repo.org/packages/"))
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.milkbox.net/packages/"))
+             '("melpa" . "http://melpa.milkbox.net/packages/"))
 (package-initialize)
 
+; Change font
 (set-face-attribute 'default nil :font "Terminus-10")
+
+; ECB
+(require 'ecb)
+(setq ecb-tip-of-the-day nil)
+
+; Activate semantic
+(semantic-mode 1)
 
 ; Add eshell shortcut
 (global-set-key [f1] 'eshell)
@@ -76,6 +87,35 @@
 (require 'ido)
 (ido-mode t)
 
+; Start Visual Bookmarks
+(require 'bm)
+(setq bm-highlight-style 'bm-highlight-only-fringe)
+;(setq bm-marker 'bm-marker-left)
+
+(global-set-key (kbd "<C-f2>") 'bm-toggle)
+(global-set-key (kbd "<f2>")   'bm-next)
+(global-set-key (kbd "<S-f2>") 'bm-previous)
+(global-set-key (kbd "<M-f9>") 'bm-show-all)
+
+;; make bookmarks persistent as default
+(setq-default bm-buffer-persistence t)
+ 
+;; Loading the repository from file when on start up.
+(add-hook' after-init-hook 'bm-repository-load)
+ 
+;; Restoring bookmarks when on file find.
+(add-hook 'find-file-hooks 'bm-buffer-restore)
+ 
+;; Saving bookmark data on killing a buffer
+(add-hook 'kill-buffer-hook 'bm-buffer-save)
+ 
+;; Saving the repository to file when on exit.
+;; kill-buffer-hook is not called when emacs is killed, so we
+;; must save all bookmarks first.
+(add-hook 'kill-emacs-hook '(lambda nil
+                              (bm-buffer-save-all)
+                              (bm-repository-save)))
+
 ; Override the kill buffer shortcut
 (global-set-key (kbd "C-x b") 'ibuffer)
 (setq ibuffer-default-sorting-mode 'major-mode)
@@ -110,13 +150,13 @@
 ;; Modify the default ibuffer-formats
 (setq ibuffer-formats
       '((mark modified read-only " "
-	      (name 18 18 :left :elide)
-	      " "
-	      (size-h 9 -1 :right)
-	      " "
-	      (mode 16 16 :left :elide)
-	      " "
-	      filename-and-process)))
+              (name 18 18 :left :elide)
+              " "
+              (size-h 9 -1 :right)
+              " "
+              (mode 16 16 :left :elide)
+              " "
+              filename-and-process)))
 
 ;; Compile on save
 (defun byte-compile-current-buffer ()
